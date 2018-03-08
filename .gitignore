@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+d-language-array-measurements.so
+d-language-array-measurements.dylib
+d-language-array-measurements.dll
+d-language-array-measurements.a
+d-language-array-measurements.lib
+d-language-array-measurements-test-*
+*.exe
+*.o
+*.obj
+*.lst
+dub.selections.json

@@ -1,0 +1,8 @@
+{
+    "name": "d-language-array-measurements",
+    "authors": [
+        "Saurabh Totey"
+    ],
+    "description": "A project for the IB extended essay. Tests the difference in speed between associative and static arrays.",
+    "license": "Unlicense"
+}
