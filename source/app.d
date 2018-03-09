@@ -1,3 +1,5 @@
+module App;
+
 import std.stdio;
 
 /**
