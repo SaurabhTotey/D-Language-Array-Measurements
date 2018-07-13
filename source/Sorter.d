@@ -1,3 +1,10 @@
+/**
+ * Templates are used for sorter methods because int[] and int[size] are different types
+ * Templates allow for having the same methods for different tyeps
+ * Using a template and not separate methods incurs no runtime costs because template parameters are evaluated at compiletime
+ * All arguments are ref because they take arrays in by reference and not by value
+ * Taking arrays in by reference allows for in-place sorting and swapping
+ */
 module Sorter;
 
 /**

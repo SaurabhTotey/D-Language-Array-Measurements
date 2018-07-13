@@ -1,3 +1,6 @@
+/**
+ * Handles actually collecting the data and writing it out to file
+ */
 module App;
 
 import std.stdio;
@@ -8,11 +11,4 @@ import MemoryWaster;
  * Entry point of the program
  */
 void main() {
-    writeln("Hello World!");
-    __gshared bool isRunning = true;
-    new Thread({
-        wasteMemory!5(500, isRunning);
-    }).start();
-    Thread.sleep(msecs(5000));
-    isRunning = false;
 }

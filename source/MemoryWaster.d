@@ -1,3 +1,6 @@
+/**
+ * Handles background memory consumption
+ */
 module MemoryWaster;
 
 import core.thread;
