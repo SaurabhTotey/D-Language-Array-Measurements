@@ -33,7 +33,16 @@ unittest {
 }
 
 /**
- * A function that bubblesorts the given array in place
+ * A function that insertionSorts the given array in place
+ */
+void insertionSort(T)(ref T array) {
+    foreach (i; 1..array.length) {
+
+    }
+}
+
+/**
+ * A function that bubbleSorts the given array in place
  */
 void bubbleSort(T)(ref T array) {
     foreach (i; 0 .. array.length) {
@@ -49,6 +58,7 @@ void bubbleSort(T)(ref T array) {
  * Tests for all of the sort methods
  */
 unittest {
+    import std.algorithm;
     import std.stdio;
 
     /**
@@ -65,5 +75,12 @@ unittest {
         assert(a2 == [3, 4, 7, 9]);
     }
 
-    testSort!"bubbleSort"();
+    /**
+     * Calls testSort on all functions in this module that have 'Sort' in their names
+     */
+    foreach (sortFunction; __traits(allMembers, Sorter)) {
+        static if (sortFunction.canFind("Sort")) {
+            testSort!sortFunction;
+        }
+    }
 }
