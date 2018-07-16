@@ -46,13 +46,24 @@ void bubbleSort(T)(ref T array) {
 }
 
 /**
- * Tests for the bubbleSort method
+ * Tests for all of the sort methods
  */
 unittest {
-    int[] a1 = [3, 4, 2, 5, 0, 6, 1];
-    bubbleSort(a1);
-    assert(a1 == [0, 1, 2, 3, 4, 5, 6]);
-    int[4] a2 = [3, 9, 4, 7];
-    bubbleSort(a2);
-    assert(a2 == [3, 4, 7, 9]);
+    import std.stdio;
+
+    /**
+     * Tests a sort method given the name of the sort function
+     */
+    void testSort(string sortName)() {
+        writeln("Testing " ~ sortName ~ " with dynamic array.");
+        int[] a1 = [3, 4, 2, 5, 0, 6, 1];
+        mixin(sortName ~ "(a1);");
+        assert(a1 == [0, 1, 2, 3, 4, 5, 6]);
+        writeln("Testing " ~ sortName ~ " with static array.");
+        int[4] a2 = [3, 9, 4, 7];
+        mixin(sortName ~ "(a2);");
+        assert(a2 == [3, 4, 7, 9]);
+    }
+
+    testSort!"bubbleSort"();
 }
