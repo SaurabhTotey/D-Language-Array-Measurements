@@ -36,8 +36,14 @@ unittest {
  * A function that insertionSorts the given array in place
  */
 void insertionSort(T)(ref T array) {
-    foreach (i; 1..array.length) {
-
+    foreach (i; 1 .. array.length) {
+        auto key = array[i];
+        auto j = i - 1;
+        while (j < array.length && array[j] > key) {
+            array[j + 1] = array[j];
+            j--;
+        }
+        array[j + 1] = key;
     }
 }
 
