@@ -11,6 +11,9 @@ module Sorter;
  * Swaps elements in array at firstIndex and secondIndex in place
  */
 void swap(T)(ref T array, ulong firstIndex, ulong secondIndex) {
+    if (firstIndex == secondIndex) {
+        return;
+    }
     array[firstIndex] += array[secondIndex];
     array[secondIndex] = array[firstIndex] - array[secondIndex];
     array[firstIndex] = array[firstIndex] - array[secondIndex];
@@ -30,6 +33,23 @@ unittest {
     assert(a2 == [4, 2, 3, 1]);
     swap(a2, 1, 0);
     assert(a2 == [2, 4, 3, 1]);
+    swap(a2, 2, 2);
+    assert(a2 == [2, 4, 3, 1]);
+}
+
+/**
+ * A function that selectionSorts the given array in place
+ */
+void selectionSort(T)(ref T array) {
+    foreach (i; 0 .. array.length - 1) {
+        auto indexOfSmallest = i;
+        foreach (j; i .. array.length) {
+            if (array[j] < array[indexOfSmallest]) {
+                indexOfSmallest = j;
+            }
+        }
+        swap(array, i, indexOfSmallest);
+    }
 }
 
 /**
@@ -65,6 +85,7 @@ void bubbleSort(T)(ref T array) {
  */
 unittest {
     import std.algorithm;
+    import std.conv;
     import std.stdio;
 
     /**
@@ -74,11 +95,11 @@ unittest {
         writeln("Testing " ~ sortName ~ " with dynamic array.");
         int[] a1 = [3, 4, 2, 5, 0, 6, 1];
         mixin(sortName ~ "(a1);");
-        assert(a1 == [0, 1, 2, 3, 4, 5, 6]);
+        assert(a1 == [0, 1, 2, 3, 4, 5, 6], a1.to!string ~ " is not sorted!");
         writeln("Testing " ~ sortName ~ " with static array.");
         int[4] a2 = [3, 9, 4, 7];
         mixin(sortName ~ "(a2);");
-        assert(a2 == [3, 4, 7, 9]);
+        assert(a2 == [3, 4, 7, 9], a2.to!string ~ " is not sorted!");
     }
 
     /**
