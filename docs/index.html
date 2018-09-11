@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>API documentation</title>
+		<link rel="stylesheet" type="text/css" href="./styles/ddox.css"/>
+		<link rel="stylesheet" href="./prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="./scripts/jquery.js">/**/</script><script type="text/javascript" src="./scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="./symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "./";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./App.html">App</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./MemoryWaster.html">MemoryWaster</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./Sorter.html">Sorter</a>
+					</div>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>API documentation</h1>
+			<table>
+				<col class="caption"/>
+				<tr>
+					<th>Module</th><th>Description</th>
+				</tr>
+			<tr>
+				<td>
+					<a href="./App.html">App</a>
+				</td>
+				<td>
+					Handles actually collecting the data and writing it out to file
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./MemoryWaster.html">MemoryWaster</a>
+				</td>
+				<td>
+					Handles background memory consumption
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./Sorter.html">Sorter</a>
+				</td>
+				<td>
+					Templates are used for sorter methods because int[] and int[size] are different types
+ Templates allow for having the same methods for different tyeps
+ Using a template and not separate methods incurs no runtime costs because template parameters are evaluated at compiletime
+ All arguments are ref because they take arrays in by reference and not by value
+ Taking arrays in by reference allows for in-place sorting and swapping
+
+				</td>
+			</tr>
+			</table>
+			<footer>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>

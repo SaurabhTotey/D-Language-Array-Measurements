@@ -1,7 +1,6 @@
 .dub
 docs.json
 __dummy.html
-docs/
 d-language-array-measurements
 d-language-array-measurements.so
 d-language-array-measurements.dylib
@@ -14,3 +13,4 @@ d-language-array-measurements-test-*
 *.obj
 *.lst
 dub.selections.json
+.vscode

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Module Sorter</title>
+		<link rel="stylesheet" type="text/css" href="./styles/ddox.css"/>
+		<link rel="stylesheet" href="./prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="./scripts/jquery.js">/**/</script><script type="text/javascript" src="./scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="./symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "./";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./App.html">App</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./MemoryWaster.html">MemoryWaster</a>
+					</div>
+				</li>
+				<li>
+					<div class="module selected">
+						<a href="./Sorter.html">Sorter</a>
+					</div>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>Module Sorter</h1><p>Templates are used for sorter methods because int[] and int[size] are different types
+ Templates allow for having the same methods for different tyeps
+ Using a template and not separate methods incurs no runtime costs because template parameters are evaluated at compiletime
+ All arguments are ref because they take arrays in by reference and not by value
+ Taking arrays in by reference allows for in-place sorting and swapping
+</p>
+			<section></section>
+			<section>
+				<h2>Functions</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="bubbleSort" class="public" href="./Sorter/bubbleSort.html">bubbleSort</a><span class="decoration">(array)</span>
+							</code>
+						</td>
+						<td>A function that bubbleSorts the given array in place
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="insertionSort" class="public" href="./Sorter/insertionSort.html">insertionSort</a><span class="decoration">(array)</span>
+							</code>
+						</td>
+						<td>A function that insertionSorts the given array in place
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="selectionSort" class="public" href="./Sorter/selectionSort.html">selectionSort</a><span class="decoration">(array)</span>
+							</code>
+						</td>
+						<td>A function that selectionSorts the given array in place
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="swap" class="public" href="./Sorter/swap.html">swap</a><span class="decoration">(array, firstIndex, secondIndex)</span>
+							</code>
+						</td>
+						<td>Swaps elements in array at firstIndex and secondIndex in place
+</td>
+					</tr>
+				</table>
+			</section>
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>
