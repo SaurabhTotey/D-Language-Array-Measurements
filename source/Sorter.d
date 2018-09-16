@@ -38,17 +38,15 @@ unittest {
 }
 
 /**
- * A function that selectionSorts the given array in place
+ * A function that bubbleSorts the given array in place
  */
-void selectionSort(T)(ref T array) {
-    foreach (i; 0 .. array.length - 1) {
-        auto indexOfSmallest = i;
-        foreach (j; i .. array.length) {
-            if (array[j] < array[indexOfSmallest]) {
-                indexOfSmallest = j;
+void bubbleSort(T)(ref T array) {
+    foreach (i; 0 .. array.length) {
+        foreach (j; 0 .. array.length - i - 1) {
+            if (array[j] > array[j + 1]) {
+                swap(array, j, j + 1);
             }
         }
-        swap(array, i, indexOfSmallest);
     }
 }
 
@@ -68,15 +66,60 @@ void insertionSort(T)(ref T array) {
 }
 
 /**
- * A function that bubbleSorts the given array in place
+ * A function that mergeSorts the given array in place
  */
-void bubbleSort(T)(ref T array) {
-    foreach (i; 0 .. array.length) {
-        foreach (j; 0 .. array.length - i - 1) {
-            if (array[j] > array[j + 1]) {
-                swap(array, j, j + 1);
+void mergeSort(T)(ref T array) {
+    void merge(ref T array, ulong leftIndex, ulong middleIndex, ulong rightIndex) {
+        auto leftArray = array[leftIndex .. middleIndex + 1].dup;
+        auto rightArray = array[middleIndex + 1 .. rightIndex + 1].dup;
+        ulong i = 0;
+        ulong j = 0;
+        ulong k = leftIndex;
+        while (i < leftArray.length && j < rightArray.length) {
+            if (leftArray[i] <= rightArray[j]) {
+                array[k] = leftArray[i];
+                i++;
+            } else {
+                array[k] = rightArray[j];
+                j++;
+            }
+            k++;
+        }
+        while (i < leftArray.length) {
+            array[k] = leftArray[i];
+            i++;
+            k++;
+        }
+        while (j < rightArray.length) {
+            array[k] = rightArray[j];
+            j++;
+            k++;
+        }
+    }
+    void sort(ref T array, ulong leftIndex, ulong rightIndex) {
+        if (leftIndex >= rightIndex) {
+            return;
+        }
+        ulong middleIndex = (leftIndex + rightIndex) / 2;
+        sort(array, leftIndex, middleIndex);
+        sort(array, middleIndex + 1, rightIndex);
+        merge(array, leftIndex, middleIndex, rightIndex);
+    }
+    sort(array, 0, array.length - 1);
+}
+
+/**
+ * A function that selectionSorts the given array in place
+ */
+void selectionSort(T)(ref T array) {
+    foreach (i; 0 .. array.length - 1) {
+        auto indexOfSmallest = i;
+        foreach (j; i .. array.length) {
+            if (array[j] < array[indexOfSmallest]) {
+                indexOfSmallest = j;
             }
         }
+        swap(array, i, indexOfSmallest);
     }
 }
 

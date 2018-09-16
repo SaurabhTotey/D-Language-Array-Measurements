@@ -53,7 +53,38 @@ $('#symbolSearchPane').show();</script>
 				</code>
 			</div>
 			
-			
+			<section><h2>Example</h2>
+<p>Tests for all of the sort methods
+</p>
+<pre class="code"><code class="lang-d"><span class="kwd">import </span><span class="pln">std<wbr/></span><span class="pun">.</span><span class="pln">algorithm</span><span class="pun">;
+</span><span class="kwd">import </span><span class="pln">std<wbr/></span><span class="pun">.</span><span class="pln">conv</span><span class="pun">;
+</span><span class="kwd">import </span><span class="pln">std<wbr/></span><span class="pun">.</span><span class="pln">stdio</span><span class="pun">;
+
+</span><span class="com">/**
+ * Tests a sort method given the name of the sort function
+ */
+</span><span class="typ">void </span><span class="pln">testSort</span><span class="pun">(</span><span class="typ">string </span><span class="pln">sortName</span><span class="pun">)() {
+    </span><span class="pln">writeln</span><span class="pun">(</span><span class="str">"Testing " </span><span class="pun">~ </span><span class="pln">sortName </span><span class="pun">~ </span><span class="str">" with dynamic array."</span><span class="pun">);
+    </span><span class="typ">int</span><span class="pun">[] </span><span class="pln">a1 </span><span class="pun">= [</span><span class="lit">3</span><span class="pun">, </span><span class="lit">4</span><span class="pun">, </span><span class="lit">2</span><span class="pun">, </span><span class="lit">5</span><span class="pun">, </span><span class="lit">0</span><span class="pun">, </span><span class="lit">6</span><span class="pun">, </span><span class="lit">1</span><span class="pun">];
+    </span><span class="kwd">mixin</span><span class="pun">(</span><span class="pln">sortName </span><span class="pun">~ </span><span class="str">"(a1);"</span><span class="pun">);
+    </span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">a1 </span><span class="pun">== [</span><span class="lit">0</span><span class="pun">, </span><span class="lit">1</span><span class="pun">, </span><span class="lit">2</span><span class="pun">, </span><span class="lit">3</span><span class="pun">, </span><span class="lit">4</span><span class="pun">, </span><span class="lit">5</span><span class="pun">, </span><span class="lit">6</span><span class="pun">], </span><span class="pln">a1<wbr/></span><span class="pun">.</span><span class="pln">to</span><span class="pun">!</span><span class="typ">string </span><span class="pun">~ </span><span class="str">" is not sorted!"</span><span class="pun">);
+    </span><span class="pln">writeln</span><span class="pun">(</span><span class="str">"Testing " </span><span class="pun">~ </span><span class="pln">sortName </span><span class="pun">~ </span><span class="str">" with static array."</span><span class="pun">);
+    </span><span class="typ">int</span><span class="pun">[</span><span class="lit">4</span><span class="pun">] </span><span class="pln">a2 </span><span class="pun">= [</span><span class="lit">3</span><span class="pun">, </span><span class="lit">9</span><span class="pun">, </span><span class="lit">4</span><span class="pun">, </span><span class="lit">7</span><span class="pun">];
+    </span><span class="kwd">mixin</span><span class="pun">(</span><span class="pln">sortName </span><span class="pun">~ </span><span class="str">"(a2);"</span><span class="pun">);
+    </span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">a2 </span><span class="pun">== [</span><span class="lit">3</span><span class="pun">, </span><span class="lit">4</span><span class="pun">, </span><span class="lit">7</span><span class="pun">, </span><span class="lit">9</span><span class="pun">], </span><span class="pln">a2<wbr/></span><span class="pun">.</span><span class="pln">to</span><span class="pun">!</span><span class="typ">string </span><span class="pun">~ </span><span class="str">" is not sorted!"</span><span class="pun">);
+}
+
+</span><span class="com">/**
+ * Calls testSort on all functions in this module that have 'Sort' in their names
+ */
+</span><span class="kwd">foreach </span><span class="pun">(</span><span class="pln">sortFunction</span><span class="pun">; </span><span class="kwd">__traits</span><span class="pun">(</span><span class="pln">allMembers</span><span class="pun">, <a href="../Sorter.html"></span><span class="typ">Sorter</span></a><span class="pun">)) {
+    </span><span class="kwd">static if </span><span class="pun">(</span><span class="pln">sortFunction<wbr/></span><span class="pun">.</span><span class="pln">canFind</span><span class="pun">(</span><span class="str">"Sort"</span><span class="pun">)) {
+        </span><span class="pln">testSort</span><span class="pun">!</span><span class="pln">sortFunction</span><span class="pun">;
+    }
+}
+</span></code></pre>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>
