@@ -109,6 +109,40 @@ void mergeSort(T)(ref T array) {
 }
 
 /**
+ * A function that quickSorts the given array in place
+ * Default pivot is the middle element of the array
+ */
+void quickSort(T)(ref T array) {
+    void sort(ref T array, ulong lowerIndex, ulong higherIndex) {
+        ulong i = lowerIndex;
+        ulong j = higherIndex;
+        ulong pivot = array[(i + j) / 2];
+        while (i <= j) {
+            while (array[i] < pivot) {
+                i++;
+            }
+            while (array[j] > pivot && j != 0) {
+                j--;
+            }
+            if (i <= j) {
+                swap(array, i, j);
+                i++;
+                if (j != 0) {
+                    j--;
+                }
+            }
+        }
+        if (lowerIndex < j) {
+            sort(array, lowerIndex, j);
+        }
+        if (higherIndex > i) {
+            sort(array, i, higherIndex);
+        }
+    }
+    sort(array, 0, array.length - 1);
+}
+
+/**
  * A function that selectionSorts the given array in place
  */
 void selectionSort(T)(ref T array) {

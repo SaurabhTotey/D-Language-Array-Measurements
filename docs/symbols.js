@@ -8,6 +8,7 @@ var symbols = [
 {name: 'Sorter.bubbleSort', kind: "functiondeclaration", path: './Sorter/bubbleSort.html', attributes: []},
 {name: 'Sorter.insertionSort', kind: "functiondeclaration", path: './Sorter/insertionSort.html', attributes: []},
 {name: 'Sorter.mergeSort', kind: "functiondeclaration", path: './Sorter/mergeSort.html', attributes: []},
+{name: 'Sorter.quickSort', kind: "functiondeclaration", path: './Sorter/quickSort.html', attributes: []},
 {name: 'Sorter.selectionSort', kind: "functiondeclaration", path: './Sorter/selectionSort.html', attributes: []},
 {name: 'Sorter.swap', kind: "functiondeclaration", path: './Sorter/swap.html', attributes: []},
 ];
