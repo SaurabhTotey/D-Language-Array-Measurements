@@ -16,7 +16,7 @@ void wasteMemory(int wasteAmount)(ulong sleepTime, ref bool continueWastingMemor
         return wastedSpace;
     }
     immutable timeStep = msecs(sleepTime);
-    while(continueWastingMemory) {
+    while (continueWastingMemory) {
         makeAllocation();
         Thread.sleep(timeStep);
     }

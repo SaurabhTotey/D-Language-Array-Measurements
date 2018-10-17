@@ -2,6 +2,7 @@
 var symbols = [
 {name: 'App', kind: "module", path: './App.html', attributes: []},
 {name: 'App.main', kind: "functiondeclaration", path: './App/main.html', attributes: []},
+{name: 'App.RunConfigurations', kind: "enumdeclaration", path: './App/RunConfigurations.html', attributes: []},
 {name: 'MemoryWaster', kind: "module", path: './MemoryWaster.html', attributes: []},
 {name: 'MemoryWaster.wasteMemory', kind: "functiondeclaration", path: './MemoryWaster/wasteMemory.html', attributes: []},
 {name: 'Sorter', kind: "module", path: './Sorter.html', attributes: []},
