@@ -1,16 +1,29 @@
 import csv
-import scipy
+import scipy.stats
 
 class TimeDataSet:
-    sortTypes = ["bubbleSort", "insertionSort", "mergeSort", "selectionSort"]
+    sortTypes = ["BubbleSort", "InsertionSort", "MergeSort", "SelectionSort"]
     def __init__(self, fileName):
-        reader = csv.DictReader(fileName, fieldnames=self.sortTypes)
-        self.numberOfRows = sum(1 for row in reader)
+        file = open(fileName)
+        reader = csv.DictReader(file, fieldnames=self.sortTypes)
         self.sortTimes = {}
         for sortType in self.sortTypes:
-            self.sortTimes[sortType] = [row[sortType] for row in reader]
+            self.sortTimes[sortType] = [int(row[sortType]) for row in reader]
+            file.seek(0)
 
-dynamicData = TimeDataSet("data/Dynamic.csv")
-staticData = TimeDataSet("data/Static.csv")
-memoryWasteDynamicData = TimeDataSet("data/MemoryWasteDynamic.csv")
-memoryWasteStaticData = TimeDataSet("data/MemoryWasteStatic.csv")
+runConfigurations = ["Dynamic", "Static", "MemoryWasteDynamic", "MemoryWasteStatic"]
+dataSets = {}
+for fileName in runConfigurations:
+    dataSets[fileName] = TimeDataSet("data/" + fileName + ".csv")
+
+outputFile = open("data/output.txt", "a")
+evaluatedConfigurationPairs = []
+for configuration1 in runConfigurations:
+    for configuration2 in runConfigurations:
+        configurationPair = set([configuration1, configuration2])
+        if configuration1 == configuration2 or configurationPair in evaluatedConfigurationPairs:
+            continue
+        for sortType in TimeDataSet.sortTypes:
+            testStatistic, pValue = scipy.stats.ttest_ind(dataSets[configuration1].sortTimes[sortType], dataSets[configuration2].sortTimes[sortType])
+            evaluatedConfigurationPairs.append(configurationPair)
+            outputFile.write("p-Value for " + sortType + " in " + configuration1 + " vs " + configuration2 + ": " + repr(pValue) + "\n")
