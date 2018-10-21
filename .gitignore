@@ -14,3 +14,4 @@ d-language-array-measurements-test-*
 *.lst
 dub.selections.json
 .vscode
+data

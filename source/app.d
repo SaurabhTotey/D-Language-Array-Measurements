@@ -21,6 +21,7 @@ enum RunConfigurations {
 
 //CONSTANTS
 enum wasteAmount = 8;
+enum arraySize = 1000;
 StopWatch timer = StopWatch(AutoStart.no);
 
 /**
@@ -31,18 +32,18 @@ void main() {
     runOrder.randomShuffle();
     foreach (runConfig; runOrder) {
         bool isRunning = true;
-        string filePath = "";
+        string filePath = "data/";
         if (runConfig == RunConfigurations.STATIC_WITH_MEMORY_WASTE || runConfig == RunConfigurations.DYNAMIC_WITH_MEMORY_WASTE) {
             new Thread({ wasteMemory!wasteAmount(5, isRunning); }).start();
-            filePath = "MemoryWaste";
+            filePath ~= "MemoryWaste";
         }
         if (runConfig == RunConfigurations.STATIC || runConfig == RunConfigurations.STATIC_WITH_MEMORY_WASTE) {
             filePath ~= "Static.csv";
-            double[500] arrayToBubbleSort;
-            double[500] arrayToInsertionSort;
-            double[500] arrayToMergeSort;
-            double[500] arrayToSelectionSort;
-            foreach (i; 0..500) {
+            double[arraySize] arrayToBubbleSort;
+            double[arraySize] arrayToInsertionSort;
+            double[arraySize] arrayToMergeSort;
+            double[arraySize] arrayToSelectionSort;
+            foreach (i; 0..arraySize) {
                 arrayToBubbleSort[i] = uniform(0.0, 1.0);
                 arrayToBubbleSort[i] = uniform(0.0, 1.0);
                 arrayToMergeSort[i] = uniform(0.0, 1.0);
@@ -51,16 +52,16 @@ void main() {
             timer.start();
             timer.reset();
             bubbleSort(arrayToBubbleSort);
-            append(filePath, timer.peek.total!"msecs".to!string ~ ", ");
+            append(filePath, timer.peek.total!"usecs".to!string ~ ",");
             timer.reset();
             insertionSort(arrayToInsertionSort);
-            append(filePath, timer.peek.total!"msecs".to!string ~ ", ");
+            append(filePath, timer.peek.total!"usecs".to!string ~ ",");
             timer.reset();
             mergeSort(arrayToMergeSort);
-            append(filePath, timer.peek.total!"msecs".to!string ~ ", ");
+            append(filePath, timer.peek.total!"usecs".to!string ~ ",");
             timer.reset();
             selectionSort(arrayToSelectionSort);
-            append(filePath, timer.peek.total!"msecs".to!string ~ "\n");
+            append(filePath, timer.peek.total!"usecs".to!string ~ "\n");
             timer.stop();
         } else {
             filePath ~= "Dynamic.csv";
@@ -68,7 +69,7 @@ void main() {
             double[] arrayToInsertionSort;
             double[] arrayToMergeSort;
             double[] arrayToSelectionSort;
-            foreach (i; 0..500) {
+            foreach (i; 0..arraySize) {
                 arrayToBubbleSort ~= uniform(0.0, 1.0);
                 arrayToBubbleSort ~= uniform(0.0, 1.0);
                 arrayToMergeSort ~= uniform(0.0, 1.0);
@@ -77,16 +78,16 @@ void main() {
             timer.start();
             timer.reset();
             bubbleSort(arrayToBubbleSort);
-            append(filePath, timer.peek.total!"msecs".to!string ~ ", ");
+            append(filePath, timer.peek.total!"usecs".to!string ~ ",");
             timer.reset();
             insertionSort(arrayToInsertionSort);
-            append(filePath, timer.peek.total!"msecs".to!string ~ ", ");
+            append(filePath, timer.peek.total!"usecs".to!string ~ ",");
             timer.reset();
             mergeSort(arrayToMergeSort);
-            append(filePath, timer.peek.total!"msecs".to!string ~ ", ");
+            append(filePath, timer.peek.total!"usecs".to!string ~ ",");
             timer.reset();
             selectionSort(arrayToSelectionSort);
-            append(filePath, timer.peek.total!"msecs".to!string ~ "\n");
+            append(filePath, timer.peek.total!"usecs".to!string ~ "\n");
             timer.stop();
         }
         isRunning = false;
