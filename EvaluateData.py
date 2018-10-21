@@ -16,8 +16,11 @@ dataSets = {}
 for fileName in runConfigurations:
     dataSets[fileName] = TimeDataSet("data/" + fileName + ".csv")
 
+requiredPValueForSignificance = 0.01
+
 outputFile = open("data/output.txt", "a")
 evaluatedConfigurationPairs = []
+significantConfigurations = []
 for configuration1 in runConfigurations:
     for configuration2 in runConfigurations:
         configurationPair = set([configuration1, configuration2])
@@ -27,3 +30,9 @@ for configuration1 in runConfigurations:
             testStatistic, pValue = scipy.stats.ttest_ind(dataSets[configuration1].sortTimes[sortType], dataSets[configuration2].sortTimes[sortType])
             evaluatedConfigurationPairs.append(configurationPair)
             outputFile.write("p-Value for " + sortType + " in " + configuration1 + " vs " + configuration2 + ": " + repr(pValue) + "\n")
+            if pValue < requiredPValueForSignificance:
+                significantConfigurations.append(sortType + " in " + configuration1 + " vs " + configuration2)
+
+outputFile.write("\n\nSIGNIFICANT SPEED DIFFERENCES\n")
+for configuration in significantConfigurations:
+    outputFile.write(configuration + "\n")
