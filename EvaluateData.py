@@ -1,4 +1,5 @@
 import csv
+import pandas
 import scipy.stats
 
 class TimeDataSet:
@@ -16,9 +17,15 @@ dataSets = {}
 for fileName in runConfigurations:
     dataSets[fileName] = TimeDataSet("data/" + fileName + ".csv")
 
-requiredPValueForSignificance = 0.01
-
 outputFile = open("data/output.txt", "a")
+
+outputFile.write("DESCRIPTIONS OF SPEEDS FOR EACH RUN CONFIGURATION\n")
+for configuration in runConfigurations:
+    for sortType in TimeDataSet.sortTypes:
+        outputFile.write("Description of " + sortType + " in " + configuration + ":\n" + repr(pandas.Series(dataSets[configuration].sortTimes[sortType]).describe()) + "\n")
+
+outputFile.write("\n\nCOMPARISON BETWEEN RUN CONFIGURATIONS UNDER EACH SORT\n")
+requiredPValueForSignificance = 0.01
 evaluatedConfigurationPairs = []
 significantConfigurations = []
 for configuration1 in runConfigurations:
