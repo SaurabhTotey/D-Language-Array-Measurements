@@ -116,12 +116,12 @@ void quickSort(T)(ref T array) {
     void sort(ref T array, ulong lowerIndex, ulong higherIndex) {
         ulong i = lowerIndex;
         ulong j = higherIndex;
-        ulong pivot = array[(i + j) / 2];
+        auto pivot = array[(i + j) / 2];
         while (i <= j) {
-            while (array[i] < pivot) {
+            while (array[i] < pivot && i != higherIndex) {
                 i++;
             }
-            while (array[j] > pivot && j != 0) {
+            while (array[j] > pivot && j != lowerIndex) {
                 j--;
             }
             if (i <= j) {

@@ -42,11 +42,13 @@ void main() {
             double[arraySize] arrayToBubbleSort;
             double[arraySize] arrayToInsertionSort;
             double[arraySize] arrayToMergeSort;
+            double[arraySize] arrayToQuickSort;
             double[arraySize] arrayToSelectionSort;
             foreach (i; 0..arraySize) {
                 arrayToBubbleSort[i] = uniform(0.0, 1.0);
                 arrayToBubbleSort[i] = uniform(0.0, 1.0);
                 arrayToMergeSort[i] = uniform(0.0, 1.0);
+                arrayToQuickSort[i] = uniform(0.0, 1.0);
                 arrayToSelectionSort[i] = uniform(0.0, 1.0);
             }
             timer.start();
@@ -60,6 +62,9 @@ void main() {
             mergeSort(arrayToMergeSort);
             append(filePath, timer.peek.total!"usecs".to!string ~ ",");
             timer.reset();
+            quickSort(arrayToQuickSort);
+            append(filePath, timer.peek.total!"usecs".to!string ~ ",");
+            timer.reset();
             selectionSort(arrayToSelectionSort);
             append(filePath, timer.peek.total!"usecs".to!string ~ "\n");
             timer.stop();
@@ -68,11 +73,13 @@ void main() {
             double[] arrayToBubbleSort;
             double[] arrayToInsertionSort;
             double[] arrayToMergeSort;
+            double[] arrayToQuickSort;
             double[] arrayToSelectionSort;
             foreach (i; 0..arraySize) {
                 arrayToBubbleSort ~= uniform(0.0, 1.0);
                 arrayToBubbleSort ~= uniform(0.0, 1.0);
                 arrayToMergeSort ~= uniform(0.0, 1.0);
+                arrayToQuickSort ~= uniform(0.0, 1.0);
                 arrayToSelectionSort ~= uniform(0.0, 1.0);
             }
             timer.start();
@@ -84,6 +91,9 @@ void main() {
             append(filePath, timer.peek.total!"usecs".to!string ~ ",");
             timer.reset();
             mergeSort(arrayToMergeSort);
+            append(filePath, timer.peek.total!"usecs".to!string ~ ",");
+            timer.reset();
+            quickSort(arrayToQuickSort);
             append(filePath, timer.peek.total!"usecs".to!string ~ ",");
             timer.reset();
             selectionSort(arrayToSelectionSort);

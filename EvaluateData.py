@@ -3,7 +3,7 @@ import pandas
 import scipy.stats
 
 class TimeDataSet:
-    sortTypes = ["BubbleSort", "InsertionSort", "MergeSort", "SelectionSort"]
+    sortTypes = ["BubbleSort", "InsertionSort", "MergeSort", "QuickSort", "SelectionSort"]
     def __init__(self, fileName):
         file = open(fileName)
         reader = csv.DictReader(file, fieldnames=self.sortTypes)
